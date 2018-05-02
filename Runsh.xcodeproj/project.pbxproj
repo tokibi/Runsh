@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A41FB222098A7DD00E30548 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41FB212098A7DD00E30548 /* WindowController.swift */; };
+		2A41FB242099646400E30548 /* SwiftShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A41FB232099646400E30548 /* SwiftShell.framework */; };
+		2A59ECA92095A94A0080D1B5 /* Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A59ECA82095A94A0080D1B5 /* Magnet.framework */; };
+		2A59ECB3209723920080D1B5 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A59ECB2209723920080D1B5 /* KeySender.swift */; };
+		2A59ECB520984C770080D1B5 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A59ECB420984C770080D1B5 /* HotKeyManager.swift */; };
+		2A59ECB7209862080080D1B5 /* PasteboardWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A59ECB6209862080080D1B5 /* PasteboardWatcher.swift */; };
 		2AA264142094226E0035E423 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA264132094226E0035E423 /* AppDelegate.swift */; };
-		2AA264162094226E0035E423 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA264152094226E0035E423 /* ViewController.swift */; };
+		2AA264162094226E0035E423 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA264152094226E0035E423 /* MainViewController.swift */; };
 		2AA26418209422700035E423 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA26417209422700035E423 /* Assets.xcassets */; };
 		2AA2641B209422700035E423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AA26419209422700035E423 /* Main.storyboard */; };
 		2AA26427209422710035E423 /* RunshTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA26426209422710035E423 /* RunshTests.swift */; };
@@ -33,9 +39,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A41FB212098A7DD00E30548 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		2A41FB232099646400E30548 /* SwiftShell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftShell.framework; path = Carthage/Build/Mac/SwiftShell.framework; sourceTree = "<group>"; };
+		2A59ECA62095A92F0080D1B5 /* Build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Build; path = Carthage/Build; sourceTree = "<group>"; };
+		2A59ECA82095A94A0080D1B5 /* Magnet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Magnet.framework; path = Carthage/Build/Mac/Magnet.framework; sourceTree = "<group>"; };
+		2A59ECB2209723920080D1B5 /* KeySender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
+		2A59ECB420984C770080D1B5 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
+		2A59ECB6209862080080D1B5 /* PasteboardWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWatcher.swift; sourceTree = "<group>"; };
 		2AA264102094226E0035E423 /* Runsh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runsh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA264132094226E0035E423 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2AA264152094226E0035E423 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2AA264152094226E0035E423 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2AA26417209422700035E423 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AA2641A209422700035E423 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AA2641C209422700035E423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +66,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A41FB242099646400E30548 /* SwiftShell.framework in Frameworks */,
+				2A59ECA92095A94A0080D1B5 /* Magnet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A59ECA52095A92F0080D1B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A41FB232099646400E30548 /* SwiftShell.framework */,
+				2A59ECA82095A94A0080D1B5 /* Magnet.framework */,
+				2A59ECA62095A92F0080D1B5 /* Build */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2AA264072094226E0035E423 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +105,7 @@
 				2AA26425209422710035E423 /* RunshTests */,
 				2AA26430209422710035E423 /* RunshUITests */,
 				2AA264112094226E0035E423 /* Products */,
+				2A59ECA52095A92F0080D1B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,11 +123,15 @@
 			isa = PBXGroup;
 			children = (
 				2AA264132094226E0035E423 /* AppDelegate.swift */,
-				2AA264152094226E0035E423 /* ViewController.swift */,
+				2A59ECB420984C770080D1B5 /* HotKeyManager.swift */,
+				2AA264152094226E0035E423 /* MainViewController.swift */,
 				2AA26417209422700035E423 /* Assets.xcassets */,
 				2AA26419209422700035E423 /* Main.storyboard */,
 				2AA2641C209422700035E423 /* Info.plist */,
 				2AA2641D209422700035E423 /* Runsh.entitlements */,
+				2A59ECB2209723920080D1B5 /* KeySender.swift */,
+				2A59ECB6209862080080D1B5 /* PasteboardWatcher.swift */,
+				2A41FB212098A7DD00E30548 /* WindowController.swift */,
 			);
 			path = Runsh;
 			sourceTree = "<group>";
@@ -134,6 +164,7 @@
 				2AA2640C2094226E0035E423 /* Sources */,
 				2AA2640D2094226E0035E423 /* Frameworks */,
 				2AA2640E2094226E0035E423 /* Resources */,
+				2A59ECAA2095A9610080D1B5 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -191,6 +222,11 @@
 				TargetAttributes = {
 					2AA2640F2094226E0035E423 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					2AA26421209422700035E423 = {
 						CreatedOnToolsVersion = 9.3;
@@ -248,13 +284,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A59ECAA2095A9610080D1B5 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/Magnet.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/SwiftShell.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2AA2640C2094226E0035E423 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AA264162094226E0035E423 /* ViewController.swift in Sources */,
+				2A59ECB3209723920080D1B5 /* KeySender.swift in Sources */,
+				2A41FB222098A7DD00E30548 /* WindowController.swift in Sources */,
+				2AA264162094226E0035E423 /* MainViewController.swift in Sources */,
+				2A59ECB520984C770080D1B5 /* HotKeyManager.swift in Sources */,
 				2AA264142094226E0035E423 /* AppDelegate.swift in Sources */,
+				2A59ECB7209862080080D1B5 /* PasteboardWatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,9 +477,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Runsh/Runsh.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Runsh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -436,9 +498,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Runsh/Runsh.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Runsh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

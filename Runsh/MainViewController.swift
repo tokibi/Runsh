@@ -6,13 +6,16 @@
 //
 
 import Cocoa
+import Magnet
 
-class ViewController: NSViewController {
-
+class MainViewController: NSViewController {
+    var appDeligate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+    
+    @IBOutlet weak var textField: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        appDeligate.mainViewController = self
     }
 
     override var representedObject: Any? {
@@ -20,7 +23,5 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
-
 }
 
