@@ -7,7 +7,7 @@
 
 import Cocoa
 
-protocol PasteboardWatcherDelegate {
+protocol PasteboardWatcherDelegate: class {
     func newlyStringObtained(copiedString: String?)
 }
 
@@ -17,7 +17,7 @@ class PasteboardWatcher: NSObject {
     private var changeCount: Int?
     private var timer: Timer?
     
-    var delegate: PasteboardWatcherDelegate?
+    weak var delegate: PasteboardWatcherDelegate?
     
     func startPolling() {
         changeCount = pasteboard.changeCount
