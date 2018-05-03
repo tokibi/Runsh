@@ -11,17 +11,50 @@ import Darwin
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var mainViewController: MainViewController!
+    var windowController: WindowController?
+    var mainViewController: MainViewController?
+    var copiedString: String?
     
-    let pid = getpid()
+    let pasteboardWatcher = PasteboardWatcher()
+    let hotKeyManager = HotKeyManager.shared
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        HotKeyManager.shared.register()
+        pasteboardWatcher.delegate = self
+        hotKeyManager.delegate = self
+        hotKeyManager.register()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        hotKeyManager.unregister()
+    }
+}
+
+extension AppDelegate: HotKeyManagerDelegate {
+    func hotKeyTapped(type: HotKeyType) {
+        guard let activeApp = NSWorkspace.shared.runningApplications.first(where: { $0.isActive }) else {
+            return
+        }
+        if activeApp.processIdentifier == getpid() { return }
+
+        switch type {
+        case .Run:
+            self.copiedString = nil
+        case .CopyAndRun:
+            pasteboardWatcher.startPolling()
+            CopyKeySender().send()
+        }
+        
+        windowController?.showAsKeyWindow()
+    }
+}
+
+extension AppDelegate: PasteboardWatcherDelegate {
+    func newlyStringObtained(copiedString: String?) {
+        guard let unwrappedString = copiedString else {
+            self.copiedString = nil
+            return
+        }
+        self.copiedString = unwrappedString
     }
 }
 
