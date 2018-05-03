@@ -7,7 +7,6 @@
 
 import Foundation
 import Cocoa
-import Magnet
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        HotKeyManager.shared.register(keyCombo: KeyCombo(keyCode: 3, cocoaModifiers: .control)!) // Control + F
+        HotKeyManager.shared.register()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

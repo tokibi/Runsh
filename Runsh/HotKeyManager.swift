@@ -9,37 +9,42 @@ import Foundation
 import Cocoa
 import Magnet
 
-final class HotKeyManager: NSObject, PasteboardWatcherDelegate {
+protocol HotKeyManagerDelegate: class {
+    func hotKeyTapped(type: HotKeyType)
+}
+
+enum HotKeyType {
+    case Run
+    case CopyAndRun
+}
+
+final class HotKeyManager: NSObject {
     static let shared = HotKeyManager()
     
-    public var deactivatedApp: NSRunningApplication?
-    public var copiedString: String?
-    fileprivate let pasteboardWatcher = PasteboardWatcher()
+    weak var delegate: HotKeyManagerDelegate?
     
     private override init() {
         super.init()
-        self.pasteboardWatcher.delegate = self
     }
     
-    func register(keyCombo: KeyCombo) {
-        HotKey(identifier: "hotkey", keyCombo: keyCombo, target: self, action: #selector(HotKeyManager.tapped)).register()
+    func register() {
+        // TODO: Load from preferences.
+        let runKeyCombo = KeyCombo(keyCode: 3, cocoaModifiers: [.control, .command])!
+        let runAndCopyKeyCombo = KeyCombo(keyCode: 3, cocoaModifiers: .control)!
+        
+        HotKey(identifier: "run", keyCombo: runKeyCombo, target: self, action: #selector(HotKeyManager.run)).register()
+        HotKey(identifier: "copyAndRun", keyCombo: runAndCopyKeyCombo, target: self, action: #selector(HotKeyManager.copyAndRun)).register()
     }
     
     func unregister() {
         HotKeyCenter.shared.unregisterAll()
     }
     
-    @objc private func tapped() {
-        deactivatedApp = NSWorkspace.shared.runningApplications.first(where: { $0.isActive })
-        CopyKeySender().send()
-        pasteboardWatcher.startPolling()
+    @objc private func run() {
+        delegate?.hotKeyTapped(type: .Run)
     }
     
-    // Delegate method
-    func newlyStringObtained(copiedString: String?) {
-        guard let unwrappedStr = copiedString else { return }
-        self.copiedString = unwrappedStr
-        
-        NSApplication.shared.activate(ignoringOtherApps: true)
+    @objc private func copyAndRun() {
+        delegate?.hotKeyTapped(type: .CopyAndRun)
     }
 }
