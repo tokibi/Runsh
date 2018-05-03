@@ -7,10 +7,13 @@
 
 import Foundation
 import Cocoa
+import Darwin
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mainViewController: MainViewController!
+    
+    let pid = getpid()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
