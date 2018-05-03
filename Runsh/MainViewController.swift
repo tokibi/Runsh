@@ -8,7 +8,7 @@
 import Cocoa
 
 class MainViewController: NSViewController {
-    var appDeligate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+    var appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
     
     private let pasteboardWatcher = PasteboardWatcher()
     private let hotKeyManager = HotKeyManager.shared
@@ -19,7 +19,7 @@ class MainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDeligate.mainViewController = self
+        appDelegate.mainViewController = self
         pasteboardWatcher.delegate = self
         hotKeyManager.delegate = self
     }
@@ -38,7 +38,7 @@ class MainViewController: NSViewController {
 extension MainViewController: HotKeyManagerDelegate {
     func hotKeyTapped(type: HotKeyType) {
         let activeApp = NSWorkspace.shared.runningApplications.first(where: { $0.isActive })
-        if activeApp?.processIdentifier == appDeligate.pid { return }
+        if activeApp?.processIdentifier == appDelegate.pid { return }
         
         switch type {
         case .Run:
