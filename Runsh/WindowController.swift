@@ -27,4 +27,8 @@ class WindowController: NSWindowController {
         modelessWindow.makeKeyAndOrderFront(nil)
         modelessWindow.orderFrontRegardless()
     }
+    
+    func hide() {
+        modelessWindow.orderOut(nil)
+    }
 }

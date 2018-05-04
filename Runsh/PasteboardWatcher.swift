@@ -26,7 +26,6 @@ class PasteboardWatcher: NSObject {
         // Stop timer after 1 second (Avoid infinite loop when text is not selected)
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
             self.timer?.invalidate()
-            self.delegate?.newlyStringObtained(copiedString: nil)
         })
     }
     
