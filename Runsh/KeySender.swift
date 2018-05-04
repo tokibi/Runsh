@@ -10,11 +10,11 @@ import Foundation
 protocol KeySender {
     var keyCode: CGKeyCode { get }
     var flags: CGEventFlags { get }
-    func send()
+    func send(to: pid_t)
 }
 
 extension KeySender {
-    func send() {
+    func send(to: pid_t) {
         // Ignore user keystrokes
         let eventSource = CGEventSource(stateID: CGEventSourceStateID.privateState)
         
@@ -22,8 +22,8 @@ extension KeySender {
         let upEvent = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: false)
         
         downEvent?.flags = flags
-        downEvent?.post(tap: .cghidEventTap)
-        upEvent?.post(tap: .cghidEventTap)
+        downEvent?.postToPid(to)
+        upEvent?.postToPid(to)
     }
 }
 

@@ -41,7 +41,7 @@ extension AppDelegate: HotKeyManagerDelegate {
             self.copiedString = nil
         case .CopyAndRun:
             pasteboardWatcher.startPolling()
-            CopyKeySender().send()
+            CopyKeySender().send(to: activeApp.processIdentifier)
         }
         
         windowController?.showAsKeyWindow()
