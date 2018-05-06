@@ -25,6 +25,7 @@ class MainViewController: NSViewController {
         }
     }
     
+    // on enter
     @IBAction func textFieldAction(_ sender: NSTextField) {
         if textField.stringValue.isEmpty { return }
         guard let result = runCommand(command: textField.stringValue) else { return }

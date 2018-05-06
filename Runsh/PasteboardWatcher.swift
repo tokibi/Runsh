@@ -6,34 +6,35 @@
 //
 
 import Cocoa
+import RxSwift
 
-protocol PasteboardWatcherDelegate: class {
-    func newlyStringObtained(copiedString: String?)
-}
-
-class PasteboardWatcher: NSObject {
-    private let pasteboard = NSPasteboard.general
-    
+class PasteboardWatcher {
+    private var eventSubject = PublishSubject<String?>()
     private var changeCount: Int?
     private var timer: Timer?
+    private let pasteboard = NSPasteboard.general
     
-    weak var delegate: PasteboardWatcherDelegate?
-    
-    func startPolling() {
+    func startPolling() -> Observable<String?> {
+        eventSubject = PublishSubject()
         changeCount = pasteboard.changeCount
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(observePasteboard), userInfo: nil, repeats: true)
         
         // Stop timer after 1 second (Avoid infinite loop when text is not selected)
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
             self.timer?.invalidate()
-        })
+            self.eventSubject.onNext(nil)
+            self.eventSubject.onCompleted()
+        }
+        
+        return eventSubject
     }
     
     @objc private func observePasteboard() {
         if let copiedString = pasteboard.string(forType: .string), pasteboard.changeCount != changeCount {
-            self.delegate?.newlyStringObtained(copiedString: copiedString)
             // Stop timer
-            timer?.invalidate()
+            self.timer?.invalidate()
+            self.eventSubject.onNext(copiedString)
+            self.eventSubject.onCompleted()
         }
     }
 }

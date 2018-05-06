@@ -22,6 +22,7 @@
 		2ADF3F7A209C5DC80032C1A5 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ADF3F78209C5DC80032C1A5 /* RxCocoa.framework */; };
 		2ADF3F7B209C5DC80032C1A5 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ADF3F79209C5DC80032C1A5 /* RxSwift.framework */; };
 		2AE40BD8209E00F20090E358 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A59ECB2209723920080D1B5 /* KeySender.swift */; };
+		2AE40BE3209E0D260090E358 /* UserCommandEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE40BE2209E0D260090E358 /* UserCommandEmulator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		2AA26433209422710035E423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ADF3F78209C5DC80032C1A5 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/Mac/RxCocoa.framework; sourceTree = "<group>"; };
 		2ADF3F79209C5DC80032C1A5 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/Mac/RxSwift.framework; sourceTree = "<group>"; };
+		2AE40BE2209E0D260090E358 /* UserCommandEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommandEmulator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				2A59ECB2209723920080D1B5 /* KeySender.swift */,
 				2A59ECB6209862080080D1B5 /* PasteboardWatcher.swift */,
 				2A41FB212098A7DD00E30548 /* WindowController.swift */,
+				2AE40BE2209E0D260090E358 /* UserCommandEmulator.swift */,
 			);
 			path = Runsh;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				2A59ECB3209723920080D1B5 /* KeySender.swift in Sources */,
 				2A41FB222098A7DD00E30548 /* WindowController.swift in Sources */,
 				2AA264162094226E0035E423 /* MainViewController.swift in Sources */,
+				2AE40BE3209E0D260090E358 /* UserCommandEmulator.swift in Sources */,
 				2A59ECB520984C770080D1B5 /* HotKeyManager.swift in Sources */,
 				2AA264142094226E0035E423 /* AppDelegate.swift in Sources */,
 				2A59ECB7209862080080D1B5 /* PasteboardWatcher.swift in Sources */,

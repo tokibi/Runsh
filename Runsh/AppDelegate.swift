@@ -8,21 +8,18 @@
 import Foundation
 import Cocoa
 import Darwin
+import RxSwift
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: WindowController?
     var mainViewController: MainViewController?
     var copiedString: String?
-    var activeApp: NSRunningApplication?
     
-    let pasteboardWatcher = PasteboardWatcher()
+    let bag = DisposeBag()
     let hotKeyManager = HotKeyManager.shared
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        windowController?.hide()
-        
-        pasteboardWatcher.delegate = self
         hotKeyManager.delegate = self
         hotKeyManager.register()
     }
@@ -40,12 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func pasteResult(result: String) {
         guard let activeApp = activeApplication() else { return }
-        
-        let pasteboard = NSPasteboard.general
-        pasteboard.clearContents()
-        pasteboard.setString(result, forType: .string)
-        PasteKeySender().send(to: activeApp.processIdentifier)
-        
+        UserCommandEmulator.general.paste(to: activeApp.processIdentifier, pasteString: result)
         windowController?.hide()
     }
 }
@@ -59,21 +51,13 @@ extension AppDelegate: HotKeyManagerDelegate {
         case .Run:
             self.copiedString = nil
         case .CopyAndRun:
-            pasteboardWatcher.startPolling()
-            CopyKeySender().send(to: activeApp.processIdentifier)
+            UserCommandEmulator.general.copy(from: activeApp.processIdentifier)
+                .subscribe(onNext: { [weak self] value in
+                    self?.copiedString = value
+                })
+                .disposed(by: bag)
         }
         
         windowController?.showAsKeyWindow()
     }
 }
-
-extension AppDelegate: PasteboardWatcherDelegate {
-    func newlyStringObtained(copiedString: String?) {
-        guard let unwrappedString = copiedString else {
-            self.copiedString = nil
-            return
-        }
-        self.copiedString = unwrappedString
-    }
-}
-
