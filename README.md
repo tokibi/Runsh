@@ -13,3 +13,4 @@ WIP
 - [ ] User preferences
     - [ ] Hotkey
     - [ ] Path
+- [ ] Beautify window
